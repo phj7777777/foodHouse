@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,6 +31,7 @@ public class homeFragment extends Fragment {
     List<Restaurant> list;
     RecyclerView recycle;
     Button button;
+    String addressName;
 
     @Nullable
     @Override
@@ -38,6 +40,17 @@ public class homeFragment extends Fragment {
         recycle = v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
         button = v.findViewById(R.id.button);
+        addressName = getActivity().getIntent().getExtras().getString("address");
+        FloatingActionButton fab = v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(),cartActivity.class);
+                i.putExtra("address",addressName);
+                startActivity(i);
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +64,8 @@ public class homeFragment extends Fragment {
 
             }
         });
+
+        //button.performClick();
 
         myRef = database.getReference("Restaurant");
         myRef.addValueEventListener(new ValueEventListener() {

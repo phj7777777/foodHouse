@@ -25,6 +25,7 @@ public class RestaurantActivity extends AppCompatActivity {
     TextView textView,numberView;
     String[] listItem;
     String titleTxt;
+    String addressName;
     TextView title;
     private FirebaseAuth firebaseAuth;
     private ListView lv;
@@ -47,15 +48,20 @@ public class RestaurantActivity extends AppCompatActivity {
         title = findViewById(R.id.restitle);
         titleTxt = intent.getStringExtra("title");
         title.setText(titleTxt);
-        setList();
 
+        addressName = intent.getExtras().getString("address");
+
+        setList();
+        //addressName = getActivity().getIntent().getExtras().getString("address");
         numberView = findViewById(R.id.number);
         lv = (ListView) findViewById(R.id.lv);
         btnnext = (Button) findViewById(R.id.next);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RestaurantActivity.this,cartActivity.class));
+                Intent i = new Intent(RestaurantActivity.this,cartActivity.class);
+                i.putExtra("address",addressName);
+                startActivity(i);
             }
         });
 
@@ -66,17 +72,22 @@ public class RestaurantActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                final int numberTXT = Integer.parseInt(((TextView) view.findViewById(R.id.number)).getText().toString());
+                Food food = new Food(current[position],pricelist[position],numberTXT);
+                if(numberTXT<1){
+                    Toast.makeText(RestaurantActivity.this, "At Least one item to add into cart", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    FirebaseDatabase.getInstance().getReference("Cart").child(food.getFruit()).setValue(food).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                Food food = new Food(current[position],pricelist[position]);
-                FirebaseDatabase.getInstance().getReference("Cart").child(food.getFruit()).setValue(food).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(RestaurantActivity.this, "Added To Cart", Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(RestaurantActivity.this, "Added To Cart", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
 
-
-                    }
-                });
 
             }
         });
@@ -100,7 +111,7 @@ public class RestaurantActivity extends AppCompatActivity {
         for(int i = 0; i < 5; i++){
 
             Food model = new Food();
-
+            model.setNumber(0);
             model.setFruit(current[i]);
             model.setPrice(pricelist[i]);
             list.add(model);

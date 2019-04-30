@@ -112,6 +112,7 @@ public class recycleAdapter extends RecyclerView.Adapter<recycleAdapter.MyHolder
 
                     Intent i = new Intent(context,RestaurantActivity.class);
                     i.putExtra("title",current.getTitle());
+
                     context.startActivity(i);
                 }
             });

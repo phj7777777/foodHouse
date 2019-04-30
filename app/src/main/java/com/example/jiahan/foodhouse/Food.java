@@ -8,10 +8,11 @@ public class Food {
 
     public Food(){}
 
-    public Food(String fruit, double price){
+    public Food(String fruit, double price,int number){
 
         this.fruit = fruit;
         this.price = price;
+        this.number = number;
 
     }
 

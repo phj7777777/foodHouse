@@ -3,8 +3,10 @@
     package="com.example.jiahan.foodhouse">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +26,10 @@
             android:name=".homePage"
             android:label="@string/title_activity_home_page" />
         <activity android:name=".RestaurantActivity" />
-        <activity android:name=".cartActivity"></activity>
+        <activity android:name=".cartActivity" />
+        <activity android:name=".AddressActivity" />
+        <activity android:name=".VerifyActivity" />
+        <activity android:name=".LastAddressActivity"></activity>
     </application>
 
 </manifest>

@@ -44,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
                         if(user != null){
                             if(password.getText().toString().equals(user.password)){
                                 Toast.makeText(MainActivity.this, "Login Successfully!",Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(MainActivity.this,homePage.class));
+                                Intent i = new Intent(MainActivity.this,homePage.class);
+                                i.putExtra("username",user.username);
+                                i.putExtra("userAddress",user.username);
+                                i.putExtra("address",user.address);
+                                startActivity(i);
+                                finish();
+
                             }
 
                         }

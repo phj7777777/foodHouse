@@ -62,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
 
-                                    User user = new User(usernameString,emailString,passwordString);
+                                    User user = new User(usernameString,emailString,passwordString,"null");
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(usernameString)
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

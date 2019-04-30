@@ -75,7 +75,7 @@ public class CustomAdapter  extends BaseAdapter {
 
         holder.tvFruit.setText(RestaurantActivity.modelArrayList.get(position).getFruit());
         holder.tvPrice.setText("RM "+ String.valueOf(RestaurantActivity.modelArrayList.get(position).getPrice()));
-        holder.tvnumber.setText("Click To Purchase");
+        holder.tvnumber.setText("0");
 
 
         holder.btn_plus.setTag(R.integer.btn_plus_view, convertView);
@@ -88,8 +88,9 @@ public class CustomAdapter  extends BaseAdapter {
                 TextView tv = (TextView) tempview.findViewById(R.id.number);
                 Integer pos = (Integer) holder.btn_plus.getTag(R.integer.btn_plus_pos);
 
+
                 int number = Integer.parseInt(tv.getText().toString()) + 1;
-                tv.setText("Click To Purchase");
+                tv.setText(Integer.toString(number));
 
                 RestaurantActivity.modelArrayList.get(pos).setNumber(number);
 
@@ -105,9 +106,12 @@ public class CustomAdapter  extends BaseAdapter {
                 View tempview = (View) holder.btn_minus.getTag(R.integer.btn_minus_view);
                 TextView tv = (TextView) tempview.findViewById(R.id.number);
                 Integer pos = (Integer) holder.btn_minus.getTag(R.integer.btn_minus_pos);
+                int number = 0;
+                if(Integer.parseInt(tv.getText().toString())>0){
+                    number = Integer.parseInt(tv.getText().toString()) - 1;
+                    tv.setText(Integer.toString(number));
+                }
 
-                int number = Integer.parseInt(tv.getText().toString()) - 1;
-                tv.setText("Click To Purchase");
 
                 RestaurantActivity.modelArrayList.get(pos).setNumber(number);
 

@@ -1,58 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/color1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-   >
-    <LinearLayout
+    android:layout_height="match_parent">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/carttitle"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="26dp"
-            android:layout_gravity="center"
-            android:text="My Cart"
+        <ImageView
+            android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_weight="1"
-        android:id="@+id/lvCart"/>
+        <ImageButton
+            android:id="@+id/user_profile_photo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-60dp"
+            android:background="@drawable/circular"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user" />
 
-
-    <TextView
-
-        android:id="@+id/totalPrice"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="26dp"
-        android:layout_gravity="center"
-        android:text="Your Cart is Empty! "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
-
-    <Button
-
-        android:id="@+id/btnPay"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:text="Ready To Pay!"
-        android:background="@color/red"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_cover_image"
+            android:paddingBottom="24dp">
 
 
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/user_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:text="Viral Android"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_layout"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/addressBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/lightGreen"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:textAlignment="center"
+                android:padding="20dp"
+                android:text="Update Address" />
+
+            <TextView
+
+                android:id="@+id/signOutBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/red"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Sign Out"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
